@@ -1,0 +1,46 @@
+package com.employee;
+
+import java.io.*;
+import java.sql.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+
+@WebServlet("/update")
+public class UpdateServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws IOException {
+
+        String id = req.getParameter("empid");
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String phone = req.getParameter("phone");
+        String city = req.getParameter("city");
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/employee_management",
+                "root", "happynewyear");
+
+            PreparedStatement ps = con.prepareStatement(
+                "UPDATE employee SET name=?, email=?, phone=?, city=? WHERE emp_code=?");
+
+            ps.setString(1, name);
+            ps.setString(2, email);
+            ps.setString(3, phone);
+            ps.setString(4, city);
+            ps.setString(5, id);
+
+            ps.executeUpdate();
+
+            res.sendRedirect("view");
+
+            con.close();
+
+        } catch (Exception e) {
+            res.getWriter().println(e);
+        }
+    }
+}

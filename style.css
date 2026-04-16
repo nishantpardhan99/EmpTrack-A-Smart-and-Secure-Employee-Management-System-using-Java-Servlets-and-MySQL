@@ -1,0 +1,103 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #000000, #1a1a2e);
+    padding: 12px 40px;
+    position: sticky;
+    top: 0;
+}
+
+/* Logo */
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Right Links */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+/* Links */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+/* Hover */
+.nav-links a:hover {
+    background: #667eea;
+}
+
+/* Logout Button */
+.nav-links a:last-child {
+    background: #e74c3c;
+}
+
+.nav-links a:last-child:hover {
+    background: #c0392b;
+}
+
+/* Heading */
+h1 {
+    color: white;
+    text-align: center;
+}
+
+/* Form */
+.form-container {
+    background: white;
+    width: 320px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Table */
+.emp-table {
+    margin: 30px auto;
+    border-collapse: collapse;
+    width: 85%;
+    background: white;
+    border-radius: 10px;
+}
+
+.emp-table th {
+    background: #667eea;
+    color: white;
+    padding: 10px;
+}
+
+.emp-table td {
+    padding: 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 6px 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.delete { background: red; }
+.edit { background: blue; }

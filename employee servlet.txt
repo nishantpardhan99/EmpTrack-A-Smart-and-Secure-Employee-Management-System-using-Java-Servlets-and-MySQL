@@ -1,0 +1,48 @@
+package com.employee;
+
+import java.io.*;
+import java.sql.*;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+
+@WebServlet("/employee")
+public class EmployeeServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse res)
+            throws IOException {
+
+        String id = req.getParameter("empid");
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String phone = req.getParameter("phone");
+        String city = req.getParameter("city");
+
+        res.setContentType("text/html");
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/employee_management",
+                "root", "happynewyear");
+
+            PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO employee VALUES (?, ?, ?, ?, ?)");
+
+            ps.setString(1, id);
+            ps.setString(2, name);
+            ps.setString(3, email);
+            ps.setString(4, phone);
+            ps.setString(5, city);
+
+            ps.executeUpdate();
+
+            res.sendRedirect("view");
+
+            con.close();
+
+        } catch (Exception e) {
+            res.getWriter().println("Error: " + e.getMessage());
+        }
+    }
+}
